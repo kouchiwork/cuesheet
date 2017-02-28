@@ -14,9 +14,9 @@ table{
     /*word-break: break-word;*/
 }
 
-td{
-    height: 2em
-}
+/*td{*/
+    /*height: 2em*/
+/*}*/
 
 /*入力欄*/
 #sheetUrl{
@@ -28,7 +28,7 @@ td{
 
 /*Bold数値*/
 .bignum {
-    font-size: 3rem;
+    font-size: 5rem;
 }
 
 
@@ -42,8 +42,8 @@ td{
 }
 /*タイトル列*/
 .title {
+    font-size: 5rem;
     width: 15rem;
-    font-size: 3rem;
 }
 .street{
     width: 10rem;
