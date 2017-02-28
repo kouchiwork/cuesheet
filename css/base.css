@@ -1,0 +1,54 @@
+/*デフォルトフォントを10pxに*/
+html {
+    font-size: 62.5%;
+}
+
+/*フォントを14pxに*/
+body {
+    font-size: 1.4em;
+}
+
+table{
+    width:100%;
+    table-layout: fixed;
+    word-break: break-word;
+    font-size: 1em;
+}
+
+#sheetUrl{
+    width: 600px;
+}
+
+.bignum {
+    font-size: 3rem;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.checkpoint {
+    width: 60px;
+    background: url('../img/check.jpg');
+    background-size: cover;
+}
+
+.right {
+    width: 60px;
+    background: url('../img/arrow.jpg');
+    background-size: cover;
+}
+
+.left {
+    width: 60px;
+    background: url('../img/arrow.jpg');
+    background-size: cover;
+    transform: rotateY(180deg);
+}
+
+.hint {
+    width: 60px;
+    background: url('../img/hint.jpg');
+    background-size: cover;
+    transform: rotateY(180deg);
+}

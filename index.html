@@ -1,2 +1,166 @@
-Hi
-hoge
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/base.css" rel="stylesheet" >
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        // シート列定義
+        var COL = {
+            NUM : 0,
+            TITLE : 1,
+            ICON : 2,
+            STREET : 3,
+            DIST : 4,
+            TOTAL : 5,
+            SIGNAL : 6,
+            MEMO : 7,
+        };
+
+        // オリジナルデータ
+        var sheetData;
+        // 整形後データ
+        var showData;
+
+        // ロード時処理
+        window.onload = function () {
+            //デフォルトのURLを挿入
+            var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
+            $("#sheetUrl").val(defUrl);
+        };
+
+        // loadボタンクリックイベント
+        $(document).on('click', "#loadButton", function () {
+
+            // 入力されたURLからKeyを取得
+            var split = $("#sheetUrl").val().split("/");
+            if (split.length < 5) {
+                return false;
+            }
+            var sheetKey = split[5];
+
+            // APIのURLを生成
+            var requestUrl = "https://spreadsheets.google.com/feeds/cells/" + sheetKey + "/od6/public/values?alt=json";
+
+            // SpreadSheetからシート情報を取得して格納
+            $.ajax({
+                type: 'GET',
+                url: requestUrl,
+                dataType: 'jsonp',
+                cache: false,
+                success: function (data) {
+                    // 実データ部分を取得
+                    sheetData = data.feed.entry;
+                    // データ整形
+                    changeData();
+                    // DOMに展開
+                    renderForm();
+                    // CSS適用
+                    applyCss();
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+
+        // データを多次元配列化
+        function changeData() {
+            showData = [];
+            for (var i = 0; i < sheetData.length; i++) {
+                var col = sheetData[i].gs$cell.col;
+                var row = sheetData[i].gs$cell.row;
+                var val = sheetData[i].gs$cell.$t;
+                if (col == 1) {
+                    showData.push([]);
+                    showData[row - 1] = [];
+                }
+                showData[row - 1].push(val);
+            }
+            console.log(showData);
+        }
+
+        // 出力
+        function renderForm() {
+
+            //TODO
+            //まずGitに入れる！
+            //次にExcelで出したい形でレイアウトする！
+            //Enumを使ってTRごとに書いていくようにすることでデータとレイアウトを切り離す！
+            //その通りに配置する!
+
+            // 表示初期化
+            var selector = "#result tbody";
+            $(selector).empty();
+
+            for (var row = 0; row < showData.length; row++) {
+                var rowData = showData[row];
+                var addHtml = "";
+
+                // ヘッダ行は表示しない
+                if (row==0){
+                    continue;
+                }
+
+                // 行を追加
+                addHtml +="<tr>";
+                for (var col = 0; col < rowData.length; col++) {
+
+
+                    switch (col) {
+                        case COL.ICON:
+                            // アイコン列
+                            addHtml +="<td class='"+showData[0][col]+" " + rowData[col]+"'></td>"
+                            break;
+                        default:
+                            // その他の列
+                            addHtml +="<td class='"+showData[0][col]+"'>" + rowData[col]+"</td>"
+                            break;
+                    }
+
+                }
+                addHtml +="</tr>";
+
+                // 出力
+                $(selector).append(addHtml);
+            }
+        }
+
+        // 表示調整
+        function applyCss(){
+
+            // ヘッダ色変更
+            $("#result thead tr").addClass("info");
+
+            //タイトル・数値巨大化
+            $("#result tbody .distance").addClass("bignum");
+            $("#result tbody .total").addClass("bignum");
+
+            // 消去
+            //$("#result tbody .distance").empty();
+
+
+        }
+
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <div>
+        <table class="table table-striped table-bordered" id="result">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <input type="text" class=”form-control” id="sheetUrl" value="">
+    <input type="button" class="btn btn-primary" id="loadButton" value="load">
+
+</div>
+</body>
+
+</html>
+
+
