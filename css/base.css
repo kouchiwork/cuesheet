@@ -3,9 +3,9 @@ html {
     font-size: 62.5%;
 }
 
-/*フォントを14pxに*/
+/*フォントを20pxに*/
 body {
-    font-size: 2em;
+    font-size: 3em;
 }
 
 table{
@@ -21,7 +21,7 @@ td{
 
 /*入力欄*/
 #sheetUrl{
-    width: 80%;
+    width: 70%;
 }
 #loadButton{
     width: 20%;
