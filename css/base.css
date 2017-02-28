@@ -31,26 +31,25 @@ table{
     background-color: #172341;
 }
 
-/*------- 列定義 ---------*/
+/*------- 列幅定義 ---------*/
 /*アイコン列*/
-
 .icon{
     width: 20%;
 }
 /*積算距離*/
 .odo{
-    width:30%;
+    width:25%;
 }
 /*タイトル列*/
 .title {
     font-size: 1.5em;
-    width: 50%;
+    width: 55%;
 }
 .next{
-    width: 30%;
+    width: 25%;
 }
 .street{
-    width: 50%;
+    width: 55%;
 }
 
 
