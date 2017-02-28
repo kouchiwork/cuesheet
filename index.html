@@ -116,6 +116,7 @@
                 //タイトル
                 addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>" + rowData[COL.TITLE]+"</td>"
                 //道路名
+
                 addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
                 //次のポイントまでの距離
                 addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>next / <span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
@@ -165,14 +166,18 @@
 
             <tbody>
             <tr class="tr_1">
-                <td class="icon checkpoint" rowspan="2" width="4em"></td>
+                <td class="icon checkpoint" rowspan="3"></td>
                 <td class="odo"><span class="bignum">185.4</span>km</td>
                 <td class="title">明神前交差点</td>
-                <td class="street">八ヶ岳Eライン</td>
-                <td class="next">次<span class="bignum">3.7</span>km</td>
             </tr>
+
             <tr class="tr_2">
-                <td class="memo" colspan="4">
+                <td class="next">次<span class="bignum">3.7</span>km</td>
+                <td class="street">八ヶ岳Eライン</td>
+            </tr>
+
+            <tr class="tr_3">
+                <td class="memo" colspan="3">
                     補給、買い出し。Garmin、ナビの設定など確認。413号線で道志みちで1000m登る。
                 </td>
             </tr>
