@@ -3,12 +3,9 @@ html {
     font-size: 62.5%;
 }
 
-/*フォントを20pxに*/
-body {
-    font-size: 6em;
-}
-
+/*フォントを30pxに*/
 table{
+    font-size: 3rem;
     width:100%;
     /*table-layout: fixed;*/
     /*word-break: break-word;*/
@@ -28,9 +25,8 @@ table{
 
 /*Bold数値*/
 .bignum {
-    font-size: 5rem;
+    font-size: 1.5em;
 }
-
 
 /*アイコン列*/
 .icon{
@@ -42,7 +38,7 @@ table{
 }
 /*タイトル列*/
 .title {
-    font-size: 5rem;
+    font-size: 1.5em;
     width: 15rem;
 }
 .street{
