@@ -11,11 +11,7 @@ table{
     /*word-break: break-word;*/
 }
 
-/*td{*/
-    /*height: 2em*/
-/*}*/
-
-/*入力欄*/
+/*入力欄の幅指定*/
 #sheetUrl{
     width: 79%;
 }
@@ -23,54 +19,57 @@ table{
     width: 20%;
 }
 
-/*Bold数値*/
+/*数値bold*/
 .bignum {
     font-size: 1.5em;
 }
 
+.tr_0{
+    background-color: #172341;
+}
+
+/*------- 列定義 ---------*/
 /*アイコン列*/
+
 .icon{
-    /*width: 8rem;*/
+    width: 20%;
 }
 /*積算距離*/
 .odo{
-    width: 7rem;
+    width:30%;
 }
 /*タイトル列*/
 .title {
     font-size: 1.5em;
-    width: 15rem;
-}
-.street{
-    width: 10rem;
+    width: 50%;
 }
 .next{
-    width: 5rem;
+    width: 30%;
+}
+.street{
+    width: 50%;
 }
 
 
+/*------- 列定義 ---------*/
 /*各種アイコン表示*/
 .checkpoint {
-    width: 60px;
     background: url('../img/check.jpg');
     background-size: cover;
 }
 
 .right {
-    width: 60px;
     background: url('../img/arrow.jpg');
     background-size: cover;
 }
 
 .left {
-    width: 60px;
     background: url('../img/arrow.jpg');
     background-size: cover;
     transform: rotateY(180deg);
 }
 
 .hint {
-    width: 60px;
     background: url('../img/hint.jpg');
     background-size: cover;
     transform: rotateY(180deg);

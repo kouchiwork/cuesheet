@@ -85,11 +85,8 @@
         function renderForm() {
 
             //TODO
-            //次にExcelで出したい形でレイアウトする！
             //IMGタグに変更！
             //信号フラグは重ねる！
-            //Enumを使ってTRごとに書いていくようにすることでデータとレイアウトを切り離す！
-            //その通りに配置する!
 
             // 表示初期化
             var selector = "#result";
@@ -102,8 +99,8 @@
                 var rowData = arrayData[row];
                 var addHtml = "";
 
-                // TBODY, TRを追加
                 addHtml +="<tbody>";
+                addHtml +="<tr class='tr_0'><td colspan='3'></td></tr>";
 
                 // ------------------------------
                 // 1行目
@@ -115,19 +112,25 @@
                 addHtml +="<td class='"+arrayData[0][COL.ODO]+"'><span class='bignum'>" + rowData[COL.ODO]+"</span> km</td>"
                 //タイトル
                 addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>" + rowData[COL.TITLE]+"</td>"
-                //道路名
-
-                addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
-                //次のポイントまでの距離
-                addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>next / <span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
 
                 addHtml +="</tr>";
 
                 // ------------------------------
                 // 2行目
                 addHtml +="<tr class='tr_2'>";
+
+                //次のポイントまでの距離
+                addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>次<span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
+                //道路名
+                addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
+
+                addHtml +="</tr>";
+
+                // ------------------------------
+                // 3行目
+                addHtml +="<tr class='tr_3'>";
                 // メモ
-                addHtml +="<td colspan='4' class='"+arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
+                addHtml +="<td colspan='3' class='"+arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
                 addHtml +="</tr>";
 
                 addHtml +="</tbody>";
@@ -157,7 +160,6 @@
 <div>
     <div>
         <table class="table" id="result">
-            <tbody></tbody>
         </table>
     </div>
 
@@ -165,8 +167,9 @@
         <table class="table" id="testhoge">
 
             <tbody>
+            <tr class='tr_0'><td colspan='3'></td></tr>
             <tr class="tr_1">
-                <td class="icon checkpoint" rowspan="3"></td>
+                <td class="icon checkpoint" rowspan="2"></td>
                 <td class="odo"><span class="bignum">185.4</span>km</td>
                 <td class="title">明神前交差点</td>
             </tr>
