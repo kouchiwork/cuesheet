@@ -56,8 +56,6 @@
                     changeData();
                     // DOMに展開
                     renderForm();
-                    // CSS適用
-                    applyCss();
                 },
                 error: function () {
                     alert('error');
@@ -87,6 +85,7 @@
             // TODO
             // IMGタグに変更して信号画像を重ねる！
             // 空行対策考える
+            // PDF出力
 
             // 表示初期化
             var selector = "#result";
@@ -138,19 +137,6 @@
                 // 出力
                 $(selector).append(addHtml);
             }
-        }
-
-        // 表示調整
-        function applyCss(){
-
-            //タイトル・数値巨大化
-            $("#result tbody .distance").addClass("bignum");
-            $("#result tbody .total").addClass("bignum");
-
-            // 消去
-            //$("#result tbody .distance").empty();
-
-
         }
 
     </script>
