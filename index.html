@@ -28,6 +28,8 @@
             //デフォルトのURLを挿入
             var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
             $("#sheetUrl").val(defUrl);
+            //TODO いきなりクリック。後で消す。
+            $("#loadButton").click();
         };
 
         // loadボタンクリックイベント
@@ -82,10 +84,9 @@
         // 出力
         function renderForm() {
 
-            // TODO
-            // IMGタグに変更して信号画像を重ねる！
-            // 空行対策考える
-            // PDF出力
+            // TODO IMGタグに変更して信号画像を重ねる！
+            // TODO 空行対策考える
+            // TODO PDF出力
 
             // 表示初期化
             var selector = "#result";
