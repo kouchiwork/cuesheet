@@ -5,7 +5,7 @@ html {
 
 /*フォントを30pxに*/
 table{
-    font-size: 3rem;
+    font-size: 4rem;
     width:100%;
     /*table-layout: fixed;*/
     /*word-break: break-word;*/
@@ -17,7 +17,7 @@ table{
 
 /*入力欄*/
 #sheetUrl{
-    width: 70%;
+    width: 79%;
 }
 #loadButton{
     width: 20%;
