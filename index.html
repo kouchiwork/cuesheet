@@ -21,7 +21,7 @@
         // オリジナルデータ
         var sheetData;
         // 整形後データ
-        var showData;
+        var arrayData;
 
         // ロード時処理
         window.onload = function () {
@@ -67,26 +67,27 @@
 
         // データを多次元配列化
         function changeData() {
-            showData = [];
+            arrayData = [];
             for (var i = 0; i < sheetData.length; i++) {
                 var col = sheetData[i].gs$cell.col;
                 var row = sheetData[i].gs$cell.row;
                 var val = sheetData[i].gs$cell.$t;
                 if (col == 1) {
-                    showData.push([]);
-                    showData[row - 1] = [];
+                    arrayData.push([]);
+                    arrayData[row - 1] = [];
                 }
-                showData[row - 1].push(val);
+                arrayData[row - 1].push(val);
             }
-            console.log(showData);
+            console.log(arrayData);
         }
 
         // 出力
         function renderForm() {
 
             //TODO
-            //まずGitに入れる！
             //次にExcelで出したい形でレイアウトする！
+            //IMGタグに変更！
+            //信号フラグは重ねる！
             //Enumを使ってTRごとに書いていくようにすることでデータとレイアウトを切り離す！
             //その通りに配置する!
 
@@ -94,14 +95,12 @@
             var selector = "#result tbody";
             $(selector).empty();
 
-            for (var row = 0; row < showData.length; row++) {
-                var rowData = showData[row];
+            for (var row = 0; row < arrayData.length; row++) {
+                var rowData = arrayData[row];
                 var addHtml = "";
 
                 // ヘッダ行は表示しない
-                if (row==0){
-                    continue;
-                }
+                if (row==0){ continue; }
 
                 // 行を追加
                 addHtml +="<tr>";
@@ -111,11 +110,11 @@
                     switch (col) {
                         case COL.ICON:
                             // アイコン列
-                            addHtml +="<td class='"+showData[0][col]+" " + rowData[col]+"'></td>"
+                            addHtml +="<td class='"+arrayData[0][col]+" " + rowData[col]+"'></td>"
                             break;
                         default:
                             // その他の列
-                            addHtml +="<td class='"+showData[0][col]+"'>" + rowData[col]+"</td>"
+                            addHtml +="<td class='"+arrayData[0][col]+"'>" + rowData[col]+"</td>"
                             break;
                     }
 
@@ -129,9 +128,6 @@
 
         // 表示調整
         function applyCss(){
-
-            // ヘッダ色変更
-            $("#result thead tr").addClass("info");
 
             //タイトル・数値巨大化
             $("#result tbody .distance").addClass("bignum");
@@ -150,8 +146,40 @@
 <div class="container">
     <div>
         <table class="table table-striped table-bordered" id="result">
-            <thead></thead>
             <tbody></tbody>
+        </table>
+    </div>
+    <div>
+        <table class="table " id="testhoge">
+            <tbody>
+            <tr>
+                <td class="checkpoint" rowspan="2" width="4em"></td>
+                <td>185.4</td>
+                <td>明神前交差点</td>
+                <td>八ヶ岳Eライン</td>
+                <td>次3.7km</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    補給、買い出し。Garmin、ナビの設定など確認。413号線で道志みちで1000m登る。
+                </td>
+            </tr>
+            </tbody>
+
+            <tbody>
+            <tr>
+                <td class="checkpoint" rowspan="2" width="4em"></td>
+                <td>185.4</td>
+                <td>明神前交差点</td>
+                <td>八ヶ岳Eライン</td>
+                <td>次3.7km</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    補給、買い出し。Garmin、ナビの設定など確認。413号線で道志みちで1000m登る。
+                </td>
+            </tr>
+            </tbody>
         </table>
     </div>
 
