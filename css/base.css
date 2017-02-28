@@ -5,7 +5,7 @@ html {
 
 /*フォントを20pxに*/
 body {
-    font-size: 3em;
+    font-size: 6em;
 }
 
 table{
@@ -38,7 +38,7 @@ table{
 }
 /*積算距離*/
 .odo{
-    width: 10rem;
+    width: 7rem;
 }
 /*タイトル列*/
 .title {
