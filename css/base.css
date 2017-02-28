@@ -3,7 +3,10 @@ html {
     font-size: 62.5%;
 }
 
-/*フォントを30pxに*/
+/*フォントを40pxに*/
+body{
+    font-size: 4rem;
+}
 table{
     font-size: 4rem;
     width:100%;
@@ -13,7 +16,7 @@ table{
 
 /*入力欄の幅指定*/
 #sheetUrl{
-    width: 79%;
+    width: 75%;
 }
 #loadButton{
     width: 20%;
