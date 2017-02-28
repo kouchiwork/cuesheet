@@ -12,8 +12,8 @@
             TITLE : 1,
             ICON : 2,
             STREET : 3,
-            DIST : 4,
-            TOTAL : 5,
+            NEXT : 4,
+            ODO : 5,
             SIGNAL : 6,
             MEMO : 7,
         };
@@ -92,34 +92,44 @@
             //その通りに配置する!
 
             // 表示初期化
-            var selector = "#result tbody";
+            var selector = "#result";
             $(selector).empty();
 
             for (var row = 0; row < arrayData.length; row++) {
-                var rowData = arrayData[row];
-                var addHtml = "";
-
                 // ヘッダ行は表示しない
                 if (row==0){ continue; }
 
-                // 行を追加
-                addHtml +="<tr>";
-                for (var col = 0; col < rowData.length; col++) {
+                var rowData = arrayData[row];
+                var addHtml = "";
 
+                // TBODY, TRを追加
+                addHtml +="<tbody>";
 
-                    switch (col) {
-                        case COL.ICON:
-                            // アイコン列
-                            addHtml +="<td class='"+arrayData[0][col]+" " + rowData[col]+"'></td>"
-                            break;
-                        default:
-                            // その他の列
-                            addHtml +="<td class='"+arrayData[0][col]+"'>" + rowData[col]+"</td>"
-                            break;
-                    }
+                // ------------------------------
+                // 1行目
+                addHtml +="<tr class='tr_1'>";
 
-                }
+                //アイコン列
+                addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" " + rowData[COL.ICON]+"'></td>";
+                //距離列
+                addHtml +="<td class='"+arrayData[0][COL.ODO]+"'><span class='bignum'>" + rowData[COL.ODO]+"</span> km</td>"
+                //タイトル
+                addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>" + rowData[COL.TITLE]+"</td>"
+                //道路名
+                addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
+                //次のポイントまでの距離
+                addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>next / <span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
+
                 addHtml +="</tr>";
+
+                // ------------------------------
+                // 2行目
+                addHtml +="<tr class='tr_2'>";
+                // メモ
+                addHtml +="<td colspan='4' class='"+arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
+                addHtml +="</tr>";
+
+                addHtml +="</tbody>";
 
                 // 出力
                 $(selector).append(addHtml);
@@ -145,21 +155,22 @@
 <body>
 <div class="container">
     <div>
-        <table class="table table-striped table-bordered" id="result">
+        <table class="table table-bordered" id="result">
             <tbody></tbody>
         </table>
     </div>
     <div>
         <table class="table " id="testhoge">
+
             <tbody>
-            <tr>
+            <tr class="tr_1">
                 <td class="checkpoint" rowspan="2" width="4em"></td>
                 <td>185.4</td>
                 <td>明神前交差点</td>
                 <td>八ヶ岳Eライン</td>
                 <td>次3.7km</td>
             </tr>
-            <tr>
+            <tr class="tr_2">
                 <td colspan="4">
                     補給、買い出し。Garmin、ナビの設定など確認。413号線で道志みちで1000m登る。
                 </td>
@@ -167,14 +178,14 @@
             </tbody>
 
             <tbody>
-            <tr>
+            <tr class="tr_1">
                 <td class="checkpoint" rowspan="2" width="4em"></td>
                 <td>185.4</td>
                 <td>明神前交差点</td>
                 <td>八ヶ岳Eライン</td>
                 <td>次3.7km</td>
             </tr>
-            <tr>
+            <tr class="tr_2">
                 <td colspan="4">
                     補給、買い出し。Garmin、ナビの設定など確認。413号線で道志みちで1000m登る。
                 </td>

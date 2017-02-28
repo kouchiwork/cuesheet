@@ -5,32 +5,53 @@ html {
 
 /*フォントを14pxに*/
 body {
-    font-size: 1.4em;
+    font-size: 1.6em;
 }
 
 table{
     width:100%;
-    table-layout: fixed;
-    word-break: break-word;
+    /*table-layout: fixed;*/
+    /*word-break: break-word;*/
     font-size: 1em;
 }
 
 td{
-    height: 3em
+    height: 2em
 }
 
+/*入力欄*/
 #sheetUrl{
-    width: 600px;
+    width: 500px;
 }
 
+/*Bold数値*/
 .bignum {
     font-size: 3rem;
 }
 
+
+/*アイコン列*/
+.icon{
+    /*width: 8rem;*/
+}
+/*積算距離*/
+.odo{
+    width: 10rem;
+}
+/*タイトル列*/
 .title {
-    font-size: 2rem;
+    width: 15rem;
+    font-size: 3rem;
+}
+.street{
+    width: 10rem;
+}
+.next{
+    width: 5rem;
 }
 
+
+/*各種アイコン表示*/
 .checkpoint {
     width: 60px;
     background: url('../img/check.jpg');
