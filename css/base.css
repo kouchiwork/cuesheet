@@ -21,7 +21,10 @@ td{
 
 /*入力欄*/
 #sheetUrl{
-    width: 500px;
+    width: 80%;
+}
+#loadButton{
+    width: 20%;
 }
 
 /*Bold数値*/
