@@ -8,7 +8,8 @@ var COL = {
     NEXT : 4,
     ODO : 5,
     SIGNAL : 6,
-    MEMO : 7,
+    CAUTION : 7,
+    MEMO : 8,
 };
 
 // 画像ファイル定義
@@ -114,9 +115,7 @@ function changeData() {
 // 出力
 function renderForm() {
 
-    // TODO IMGタグに変更して信号画像を重ねる！(200x200px)
     // TODO 空行対策考える
-    // TODO PDF出力
 
     // 表示初期化
     var selector = "#result";
@@ -137,12 +136,21 @@ function renderForm() {
         addHtml +="<tr class='tr_1'>";
 
         //アイコン列
-        // addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" " + rowData[COL.ICON]+"'></td>";
-        addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" "+rowData[COL.ICON]+"'><img src='img/"+IMAGES[rowData[COL.ICON]]+"' height='200' width='200'></td>";
+        addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" "+rowData[COL.ICON]+"'>";
+        addHtml +="<img src='img/"+IMAGES[rowData[COL.ICON]]+"' >";
+        addHtml +="</td>";
         //距離列
-        addHtml +="<td class='"+arrayData[0][COL.ODO]+"'><span class='bignum'>" + rowData[COL.ODO]+"</span> km</td>"
+        addHtml +="<td class='"+arrayData[0][COL.ODO]+"'>";
+        addHtml +="<span class='bignum'>" + rowData[COL.ODO]+"</span> km";
+        if (rowData[COL.SIGNAL] == "TRUE"){
+          addHtml +="<span class='signal'><img src='img/signal.png' height='10px' /></span>";
+        }
+
+        addHtml +="</td>"
         //タイトル
-        addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>" + rowData[COL.TITLE]+"</td>"
+        addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>";
+        addHtml += rowData[COL.TITLE];
+        addHtml +="</td>";
 
         addHtml +="</tr>";
 
@@ -160,8 +168,14 @@ function renderForm() {
         // ------------------------------
         // 3行目
         addHtml +="<tr class='tr_3'>";
+
+        var caution="";
+        if (rowData[COL.CAUTION]=="TRUE"){
+          caution=" caution ";
+        }
+
         // メモ
-        addHtml +="<td colspan='3' class='"+arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
+        addHtml +="<td colspan='3' class='" + caution +arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
         addHtml +="</tr>";
 
         addHtml +="</tbody>";
