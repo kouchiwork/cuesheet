@@ -52,27 +52,7 @@ table{
     width: 55%;
 }
 
-
-/*------- 列定義 ---------*/
-/*各種アイコン表示*/
-.checkpoint {
-    background: url('../img/check.jpg');
-    background-size: cover;
-}
-
-.right {
-    background: url('../img/arrow.jpg');
-    background-size: cover;
-}
-
+/*左アイコンは右矢印を反転*/
 .left {
-    background: url('../img/arrow.jpg');
-    background-size: cover;
-    transform: rotateY(180deg);
-}
-
-.hint {
-    background: url('../img/hint.jpg');
-    background-size: cover;
     transform: rotateY(180deg);
 }
