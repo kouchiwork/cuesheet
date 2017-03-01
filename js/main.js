@@ -1,0 +1,133 @@
+    // シート列定義
+    var COL = {
+        NUM : 0,
+        TITLE : 1,
+        ICON : 2,
+        STREET : 3,
+        NEXT : 4,
+        ODO : 5,
+        SIGNAL : 6,
+        MEMO : 7,
+    };
+
+    // オリジナルデータ
+    var sheetData;
+    // 整形後データ
+    var arrayData;
+
+    // ロード時処理
+    window.onload = function () {
+        //デフォルトのURLを挿入
+        var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
+        $("#sheetUrl").val(defUrl);
+        //TODO いきなりクリック。後で消す。
+        $("#loadButton").click();
+    };
+
+    // loadボタンクリックイベント
+    $(document).on('click', "#loadButton", function () {
+
+        // 入力されたURLからKeyを取得
+        var split = $("#sheetUrl").val().split("/");
+        if (split.length < 5) {
+            return false;
+        }
+        var sheetKey = split[5];
+
+        // APIのURLを生成
+        var requestUrl = "https://spreadsheets.google.com/feeds/cells/" + sheetKey + "/od6/public/values?alt=json";
+
+        // SpreadSheetからシート情報を取得して格納
+        $.ajax({
+            type: 'GET',
+            url: requestUrl,
+            dataType: 'jsonp',
+            cache: false,
+            success: function (data) {
+                // 実データ部分を取得
+                sheetData = data.feed.entry;
+                // データ整形
+                changeData();
+                // DOMに展開
+                renderForm();
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    });
+
+    // データを多次元配列化
+    function changeData() {
+        arrayData = [];
+        for (var i = 0; i < sheetData.length; i++) {
+            var col = sheetData[i].gs$cell.col;
+            var row = sheetData[i].gs$cell.row;
+            var val = sheetData[i].gs$cell.$t;
+            if (col == 1) {
+                arrayData.push([]);
+                arrayData[row - 1] = [];
+            }
+            arrayData[row - 1].push(val);
+        }
+        console.log(arrayData);
+    }
+
+    // 出力
+    function renderForm() {
+
+        // TODO IMGタグに変更して信号画像を重ねる！(200x200px)
+        // TODO 空行対策考える
+        // TODO PDF出力
+
+        // 表示初期化
+        var selector = "#result";
+        $(selector).empty();
+
+        for (var row = 0; row < arrayData.length; row++) {
+            // ヘッダ行は表示しない
+            if (row==0){ continue; }
+
+            var rowData = arrayData[row];
+            var addHtml = "";
+
+            addHtml +="<tbody>";
+            addHtml +="<tr class='tr_0'><td colspan='3'></td></tr>";
+
+            // ------------------------------
+            // 1行目
+            addHtml +="<tr class='tr_1'>";
+
+            //アイコン列
+            addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" " + rowData[COL.ICON]+"'></td>";
+            //距離列
+            addHtml +="<td class='"+arrayData[0][COL.ODO]+"'><span class='bignum'>" + rowData[COL.ODO]+"</span> km</td>"
+            //タイトル
+            addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>" + rowData[COL.TITLE]+"</td>"
+
+            addHtml +="</tr>";
+
+            // ------------------------------
+            // 2行目
+            addHtml +="<tr class='tr_2'>";
+
+            //次のポイントまでの距離
+            addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>次<span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
+            //道路名
+            addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
+
+            addHtml +="</tr>";
+
+            // ------------------------------
+            // 3行目
+            addHtml +="<tr class='tr_3'>";
+            // メモ
+            addHtml +="<td colspan='3' class='"+arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
+            addHtml +="</tr>";
+
+            addHtml +="</tbody>";
+
+            // 出力
+            $(selector).append(addHtml);
+        }
+    }
