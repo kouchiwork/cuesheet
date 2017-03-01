@@ -17,7 +17,7 @@ var IMAGES = {};
 IMAGES.checkpoint = "check.jpg";
 IMAGES.right = "arrow.jpg";
 IMAGES.left = "arrow.jpg";
-IMAGES.hint = "hint.jpg";
+IMAGES.hint = "info.jpg";
 
 // オリジナルデータ
 var sheetData;
@@ -139,13 +139,13 @@ function renderForm() {
         addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" "+rowData[COL.ICON]+"'>";
         addHtml +="<img src='img/"+IMAGES[rowData[COL.ICON]]+"' >";
         addHtml +="</td>";
+
         //距離列
         addHtml +="<td class='"+arrayData[0][COL.ODO]+"'>";
-        addHtml +="<span class='bignum'>" + rowData[COL.ODO]+"</span> km";
+        addHtml +="<p><span class='bignum'>" + rowData[COL.ODO]+"</span> km</p>";
         if (rowData[COL.SIGNAL] == "TRUE"){
           addHtml +="<span class='signal'><img src='img/signal.png' height='10px' /></span>";
         }
-
         addHtml +="</td>"
         //タイトル
         addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>";
@@ -175,7 +175,7 @@ function renderForm() {
         }
 
         // メモ
-        addHtml +="<td colspan='3' class='" + caution +arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO]+"</td>"
+        addHtml +="<td colspan='3' class='" + caution +arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO].replace(/\r?\n/g, '<br>')+"</td>"
         addHtml +="</tr>";
 
         addHtml +="</tbody>";
