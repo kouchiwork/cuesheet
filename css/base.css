@@ -28,7 +28,7 @@ table{
 }
 
 .tr_0{
-    background-color: #172341;
+    background-color: #172341 !important;
 }
 
 /*------- 列幅定義 ---------*/
@@ -68,5 +68,5 @@ table{
 }
 /*注意フラグ*/
 .caution {
-    color: orangered;
+    color: orangered !important;
 }
