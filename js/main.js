@@ -109,7 +109,6 @@ function changeData() {
         }
         arrayData[row - 1].push(val);
     }
-    console.log(arrayData);
 }
 
 // 出力
@@ -159,7 +158,7 @@ function renderForm() {
         addHtml +="<tr class='tr_2'>";
 
         //次のポイントまでの距離
-        addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>次<span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
+        addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>><span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
         //道路名
         addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
 

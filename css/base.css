@@ -7,11 +7,18 @@ html {
 body{
     font-size: 4rem;
 }
+
+/*Chrome印刷対応*/
+/*todo BootStrapが干渉してるようなので見直し*/
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+}
+
 table{
     font-size: 4rem;
     width:100%;
-    /*table-layout: fixed;*/
-    /*word-break: break-word;*/
 }
 
 /*入力欄の幅指定*/
@@ -28,7 +35,8 @@ table{
 }
 
 .tr_0{
-    background-color: #172341 !important;
+    height:10px;
+    background-color: black !important;
 }
 
 /*------- 列幅定義 ---------*/
