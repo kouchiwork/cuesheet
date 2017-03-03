@@ -24,42 +24,30 @@ var sheetData;
 // 整形後データ
 var arrayData;
 
-//クエリストリング取得
-function GetQueryString() {
-    if (1 < document.location.search.length) {
-
-        // 最初の1文字 (?記号) を除いた文字列を取得する
-        var query = document.location.search.substring(1);
-
-        // クエリの区切り記号 (&) で文字列を配列に分割する
-        var parameters = query.split('&');
-
-        var result = new Object();
-        for (var i = 0; i < parameters.length; i++) {
-            // パラメータ名とパラメータ値に分割する
-            var element = parameters[i].split('=');
-            var paramName = decodeURIComponent(element[0]);
-            var paramValue = decodeURIComponent(element[1]);
-            // パラメータ名をキーとして連想配列に追加する
-            result[paramName] = decodeURIComponent(paramValue);
-        }
-        return result;
-    }
-    return null;
-}
+// 指定キー
+var QS;
 
 // ロード時処理
 window.onload = function () {
 
-    // GETパラメータ取得 (debugだったら自動出力)
-    var q = GetQueryString();
-    if(!q){return true;}
-    if (q['debug'] != 1){ return true;}
+    // GETパラメータ取得
+    QS = GetQueryString();
+    if(!QS){return true;}
 
-    //デフォルトのURLを挿入
-    var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
-    $("#sheetUrl").val(defUrl);
-    $("#loadButton").click();
+    // debugだったら自分の情報を自動出力
+    if (QS['debug'] == 1){
+        var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
+        $("#sheetUrl").val(defUrl);
+        $("#loadButton").click();
+    }
+
+    // KEYが指定されている場合は自動出力
+    if (QS['key']){
+        var defUrl = "https://docs.google.com/spreadsheets/d/"+QS['key']+"/edit#gid=0";
+        $("#sheetUrl").val(defUrl);
+        $("#loadButton").click();
+    }
+
 };
 
 // loadボタンクリックイベント
@@ -96,25 +84,43 @@ $(document).on('click', "#loadButton", function () {
     });
 });
 
-// データを多次元配列化
-function changeData() {
+// データ整形
+function changeData(){
+
+    // 先に最大行数と最大列数から配列の形を決定し、
+    // その後セル位置から値を埋め込んでいく (空白セル対応)
+
+    var maxRow = sheetData[sheetData.length-1].gs$cell.row;
+    var maxCol = Object.keys(COL).length;
+
+    // 配列初期化
     arrayData = [];
-    for (var i = 0; i < sheetData.length; i++) {
-        var col = sheetData[i].gs$cell.col;
-        var row = sheetData[i].gs$cell.row;
-        var val = sheetData[i].gs$cell.$t;
-        if (col == 1) {
-            arrayData.push([]);
-            arrayData[row - 1] = [];
+
+    // SheetDataを配列に展開
+    for(var row = 1; row <= maxRow; row++) {
+        arrayData.push([]);
+        for(var col = 1; col <= maxCol; col++) {
+            var val = getDataFromSheet(row,col);
+            arrayData[row-1].push(val);
         }
-        arrayData[row - 1].push(val);
+    }
+
+}
+
+// 指定したセル位置の値を取得
+function getDataFromSheet(row,col){
+    var val = sheetData.filter(function(item, index){
+        if (item.gs$cell.row == row && item.gs$cell.col == col) return true;
+    });
+    if (val[0]){
+        return val[0].gs$cell.$t;
+    }else{
+        return " "
     }
 }
 
 // 出力
 function renderForm() {
-
-    // TODO 空行対策考える
 
     // 表示初期化
     var selector = "#result";
@@ -136,7 +142,7 @@ function renderForm() {
 
         //アイコン列
         addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" "+rowData[COL.ICON]+"'>";
-        addHtml +="<img src='img/"+IMAGES[rowData[COL.ICON]]+"' >";
+        addHtml +="<img src='img/"+getImageName(rowData[COL.ICON])+"' >";
         addHtml +="</td>";
 
         //距離列
@@ -182,4 +188,41 @@ function renderForm() {
         // 出力
         $(selector).append(addHtml);
     }
+}
+
+//クエリストリング取得
+function GetQueryString() {
+    if (1 < document.location.search.length) {
+
+        // 最初の1文字 (?記号) を除いた文字列を取得する
+        var query = document.location.search.substring(1);
+
+        // クエリの区切り記号 (&) で文字列を配列に分割する
+        var parameters = query.split('&');
+
+        var result = new Object();
+        for (var i = 0; i < parameters.length; i++) {
+
+            // パラメータ名とパラメータ値に分割する
+            var element = parameters[i].split('=');
+            var paramName = decodeURIComponent(element[0]);
+            var paramValue = decodeURIComponent(element[1]);
+
+            // パラメータ名をキーとして連想配列に追加する
+            result[paramName] = decodeURIComponent(paramValue);
+        }
+        return result;
+    }
+    return null;
+}
+
+
+// 画像ファイル指定 (指定なし対応でデフォルト値をhintに)
+function getImageName(val){
+    if (IMAGES[val]){
+        return IMAGES[val];
+    }else{
+        return IMAGES["hint"];
+    }
+
 }

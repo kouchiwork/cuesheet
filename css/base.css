@@ -1,9 +1,7 @@
-/*デフォルトフォントを10pxに*/
+/*デフォルトフォントを10px→40pxに*/
 html {
     font-size: 62.5%;
 }
-
-/*フォントを40pxに*/
 body{
     font-size: 4rem;
 }
@@ -18,12 +16,12 @@ body{
 
 table{
     font-size: 4rem;
-    width:100%;
+    /*width:100%;*/
 }
 
 /*入力欄の幅指定*/
 #sheetUrl{
-    width: 75%;
+    width: 59%;
 }
 #loadButton{
     width: 20%;
@@ -37,6 +35,10 @@ table{
 .tr_0{
     height:10px;
     background-color: black !important;
+}
+
+.howto{
+    font-size: 0.5em;
 }
 
 /*------- 列幅定義 ---------*/
