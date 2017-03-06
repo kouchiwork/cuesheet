@@ -18,10 +18,10 @@ Mobileでもできるけど入力が大変。
 こーちのシートを開けて１行目を全部コピーして貼り付ける
 URL :
 https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
-注意:ヘッダ(１行目)は変更、削除しないこと
 
 3. データを入力していく
-各ヘッダの意味は「Headers」を参照
+各ヘッダの意味は下の「Headers」の項を参照
+注意:ヘッダ(１行目)は変更、削除しないこと
 
 4. ウェブ上で公開する
 Googleスプレッドシートの
