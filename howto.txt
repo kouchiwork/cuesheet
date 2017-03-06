@@ -27,11 +27,11 @@ https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe0
 Googleスプレッドシートの
 > ファイル > ウェブに公開 から公開に設定
 
-5. CueSheet Builderの入力欄に作成したシートのURLを入力する
+5. CueSheet Builderの入力欄に作成したシートのURLを入力して「load」をクリックで表示されます。
 
 6. 自動表示の設定
 
-URLにGoogleスプレッドシートのkeyを埋め込むことで自動表示できる
+URLにGoogleスプレッドシートのkeyを埋め込むことで自動表示できます。
 ex) https://reels78.github.io/cuesheet/?key=XXXXXX
 
 keyはGoogleスプレッドシートのURLの以下の部分
@@ -42,7 +42,7 @@ https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe0
 つまり
 https://docs.google.com/spreadsheets/d/【この部分】/edit#gid=0
 
-このようにURLを入力しなくても自動で表示されるようになる。
+このようにするとシートのURLを入力しなくても自動で表示されるようになる。
 https://reels78.github.io/cuesheet/?key=1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
 
 --------------------------
@@ -68,18 +68,18 @@ ex) 「県道３号線」など
 
 # next
 次のポイントまでの距離。
-シート上で計算式を入れてしまえば簡単。
-ex) E2に入力の場合:「=F4-F3」
+シート上で積算距離から引くような計算式を入れてしまえば簡単。
+ex) E3に入力の場合:「=F4-F3」
 
 # odo
-積算距離
+積算距離。ルートラボなどで距離を調べて入力する。
 
 # signal_flag
 信号があるかどうか。TRUEを設定すると信号マークが表示される。
 右折、左折ポイントなどで入力する。
 
 # caution
-注意したいポイントでTRUEに設定すると、メモ欄が赤く表示される仕様。
+注意したいポイントでTRUEに設定すると、メモ欄が赤く表示される。
 
 # memo
 メモ欄。自由入力。
