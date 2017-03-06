@@ -1,0 +1,99 @@
+​===========================
+CueSheetBuilder Ver 1.0
+===========================
+
+--------------------------
+outline
+--------------------------
+# URL
+https://reels78.github.io/cuesheet/
+
+--------------------------
+how to make
+--------------------------
+1. PCを用意
+Mobileでもできるけど入力が大変ですよ。
+
+2. シートを作る
+こーちのシートを開けて１行目を全部コピーして貼り付ける
+URL :
+https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
+注意:ヘッダ(１行目)は変更、削除しないこと
+
+3. データを入力していく
+各ヘッダの意味は「Headers」を参照
+
+4. ウェブ上で公開する
+Googleスプレッドシートの
+> ファイル > ウェブに公開 から公開に設定
+
+5. CueSheet Builderの入力欄に作成したシートのURLを入力する
+
+6. 自動表示の設定
+
+URLにGoogleスプレッドシートのkeyを埋め込むことで自動表示できる
+ex) https://reels78.github.io/cuesheet/?key=XXXXXX
+
+keyはGoogleスプレッドシートのURLの以下の部分
+https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
+↓
+1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
+
+つまり
+https://docs.google.com/spreadsheets/d/【この部分】/edit#gid=0
+
+このようにURLを入力しなくても自動で表示されるようになる。
+https://reels78.github.io/cuesheet/?key=1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
+
+--------------------------
+Headers
+--------------------------
+# num
+連番。現状は表示していないので入力しなくてもOK
+
+# title
+ポイントのタイトル。
+ex) 「山中湖」「第二チェックポイント」など
+
+# icon
+表示されるアイコンの設定。
+- right : 右折アイコン
+- left : 左折アイコン
+- checkpoint : チェックポイントアイコン
+- hint : ヒントアイコン
+
+# street
+道路名。自由入力。
+ex) 「県道３号線」など
+
+# next
+次のポイントまでの距離。
+シート上で計算式を入れてしまえば簡単。
+ex) E2に入力の場合:「=F4-F3」
+
+# odo
+積算距離
+
+# signal_flag
+信号があるかどうか。TRUEを設定すると信号マークが表示される。
+右折、左折ポイントなどで入力する。
+
+# caution
+注意したいポイントでTRUEに設定すると、メモ欄が赤く表示される仕様。
+
+# memo
+メモ欄。自由入力。
+
+--------------------------
+PDF変換、転送
+--------------------------
+1. PDF変換
+ブラウザでキューシートを表示した状態で、「印刷」から
+「PDFに保存」を選択。用紙サイズは現状A3なら崩れないです。
+PC上にPDFを保存する
+
+2. 転送(iPhoneの場合)
+メールで上記PDFを添付して送信する。
+iPhone側で添付ファイルを開いてiBooksに転送する。
+これでオフラインでも見れるようになる。
+
