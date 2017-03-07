@@ -14,7 +14,7 @@ how to make
 1. PCを用意
 Mobileでもできるけど入力が大変。
 
-2. シートを作る
+2. Googleスプレッドシートを作る
 こーちのシートを開けて１行目を全部コピーして貼り付ける
 URL :
 https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
@@ -35,15 +35,19 @@ URLにGoogleスプレッドシートのkeyを埋め込むことで自動表示�
 ex) https://reels78.github.io/cuesheet/?key=XXXXXX
 
 keyはGoogleスプレッドシートのURLの以下の部分
-https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
-↓
-1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
-
-つまり
 https://docs.google.com/spreadsheets/d/【この部分】/edit#gid=0
 
-このようにするとシートのURLを入力しなくても自動で表示されるようになる。
+ex)
+シートのURL
+https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
+↓
+key
+1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
+↓
+埋め込んだURL
 https://reels78.github.io/cuesheet/?key=1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
+
+このようにkeyを埋め込むとシートのURLを入力しなくても自動で表示されるようになる。
 
 --------------------------
 Headers
@@ -60,7 +64,8 @@ ex) 「山中湖」「第二チェックポイント」など
 - right : 右折アイコン
 - left : 左折アイコン
 - checkpoint : チェックポイントアイコン
-- hint : ヒントアイコン
+- hint : ピンアイコン
+何も入力しないとピンアイコンになります。
 
 # street
 道路名。自由入力。
@@ -87,13 +92,6 @@ ex) E3に入力の場合:「=F4-F3」
 --------------------------
 PDF変換、転送
 --------------------------
-1. PDF変換
-ブラウザでキューシートを表示した状態で、「印刷」から
-「PDFに保存」を選択。用紙サイズは現状A3なら崩れないです。
-PC上にPDFを保存する
-
-2. 転送(iPhoneの場合)
-メールで上記PDFを添付して送信する。
-iPhone側で添付ファイルを開いてiBooksに転送する。
-これでオフラインでも見れるようになる。
+iPhoneの場合はブラウザで表示して「iBooksに転送」でOK。
+AndroidはPDF印刷して転送するなりしてみてください。
 

@@ -10,33 +10,35 @@ body{
 table{
     font-size: 4rem;
     page-break-inside: avoid;
+    border-top: 10px solid black !important;
 }
 td{
     padding: 8px;
     line-height: 1.5;
     vertical-align: top;
-    border-top: 3px solid #ddd;
+    border-top: 3px solid #ddd !important;
 }
 
 /*入力欄の幅指定*/
+
 #sheetUrl{
-    width: 59%;
+    width: 50%;
+}
+#odoplus{
+    width: 8%;
 }
 #loadButton{
     width: 20%;
 }
+
 
 /*数値bold*/
 .bignum {
     font-size: 1.5em;
 }
 
-.tr_0{
-    height:10px;
-    background-color: black !important;
-}
 
-.howto{
+.small_text{
     font-size: 0.5em;
 }
 
@@ -74,7 +76,12 @@ td{
 /*左アイコンは右矢印を反転*/
 .left {
     transform: rotateY(180deg);
+    filter: invert(100%);
 }
+.right {
+    filter: invert(100%);
+}
+
 /*注意フラグ*/
 .caution {
     color: orangered !important;

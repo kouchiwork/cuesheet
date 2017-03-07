@@ -18,11 +18,16 @@
 
         <table>
         <tbody>
-        <tr class="tr_0"><td colspan="3"></td></tr>
         <tr class="tr_1">
-            <td rowspan="2" class="<%= header_icon %> <%= icon %>"><img src="img/<%= getImageName(icon) %>"></td>
+            <td rowspan="2" class="<%= header_icon %> <%= icon %>">
+                <% if(icon){ %>
+                <img src="img/<%= IMAGES[icon] %>">
+                <% }else{ %>
+                <img src="img/info.jpg">
+                <% } %>
+            </td>
             <td class="<%= header_odo %>">
-                <p><span class="bignum"><%= odo %></span> km</p>
+                <p><span class="bignum"><%= makeOdo(odo,$("#odoplus").val()) %></span> km</p>
                 <% if(signal_flag=='TRUE'){ %>
                 <span class='signal'><img src='img/signal.png' height='10px' /></span>
                 <% } %>
@@ -30,7 +35,7 @@
             <td class="<%= header_title %>"><%= title %></td>
         </tr>
         <tr class="tr_2"><td class="<%= header_next %>">&gt;<span class="bignum"><%= next %></span>km</td><td class="<%= header_street %>"><%= street %></td></tr>
-        <tr class="tr_3"><td colspan="3" class=" <% if(caution=='TRUE'){ %> <%= header_caution %> <% } %> <%= header_memo %>"><%= memo %></td></tr>
+        <tr class="tr_3"><td colspan="3" class=" <% if(caution=='TRUE'){ %> <%= header_caution %> <% } %> <%= header_memo %>"><%= nullToHyphen(memo) %></td></tr>
         </tbody>
         </table>
 
@@ -38,10 +43,19 @@
 
     <div id="control">
         <hr>
-        <div>CueSheet Builder ver1.0</div>
+        <div>
+            CueSheet Builder ver1.0
+            &nbsp;
+            <a class="small_text" href="howto.txt" target="_blank">HOW TO</a>
+            &nbsp;
+            <a class="small_text" href="change.log" target="_blank">LOG</a>
+        </div>
+        <span class="small_text">URL</span>
         <input type="text" class=”form-control” id="sheetUrl" value="">&nbsp;
+        <span class="small_text">odo+</span>
+        <input type="text" class=”form-control” id="odoplus" value="">&nbsp;
         <input type="button" class="btn btn-primary" id="loadButton" value="load">&nbsp;
-        <a class="howto" href="howto.txt" target="_blank">HOW TO</a>
+
     </div>
 
 </div>

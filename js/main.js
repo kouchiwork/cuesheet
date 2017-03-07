@@ -41,7 +41,7 @@ $(document).on('click', "#loadButton", function () {
     // 入力されたURLからKeyを取得
     var split = $("#sheetUrl").val().split("/");
     if (split.length < 5) {
-      alert("URLが間違ってないかい？");
+      alert("Wrong URL!!!");
       return false;
     }
     var sheetKey = split[5];
@@ -164,18 +164,36 @@ function getDataFromSheet(row,col){
         if (item.gs$cell.row == row && item.gs$cell.col == col) return true;
     });
     if (val[0]){
-        return val[0].gs$cell.$t;
+        return val[0].gs$cell.$t.trim();
     }else{
-        return " "
+        return ""
     }
 }
 
-// 画像ファイル指定 (指定なし対応でデフォルト値をhintに)
-function getImageName(val){
-    if (IMAGES[val]){
-        return IMAGES[val];
+// Null to hyphen
+function nullToHyphen(val){
+    if(!val){
+        return "-"
     }else{
-        return IMAGES["hint"];
+        return val;
     }
+}
 
+// 積算距離のプラス
+function makeOdo(odo,odoPlus){
+    // Number化した上で合計値を四捨五入して返す
+    return floatFormat(nullToZero(odo)+nullToZero(odoPlus),1);
+}
+
+// Null to Zero
+function nullToZero(val){
+    if(!val){return 0;}
+    if (!isFinite(val)){return 0;}
+    return Number(val);
+}
+
+// 小数点四捨五入
+function floatFormat( number, n ) {
+    var _pow = Math.pow( 10 , n ) ;
+    return Math.round( number * _pow ) / _pow ;
 }
