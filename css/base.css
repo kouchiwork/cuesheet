@@ -25,19 +25,17 @@ td{
     width: 50%;
 }
 #odoplus{
-    width: 8%;
+    width: 12%;
 }
 #loadButton{
     width: 20%;
 }
 
 
-/*数値bold*/
+/* テキストサイズ */
 .bignum {
     font-size: 1.5em;
 }
-
-
 .small_text{
     font-size: 0.5em;
 }
