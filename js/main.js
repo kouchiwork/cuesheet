@@ -1,5 +1,6 @@
 
 // 画像ファイル定義
+// アイコン名とファイル名の差異を吸収
 var IMAGES = {};
 IMAGES.check = "check.jpg";
 IMAGES.right = "right.jpg";
@@ -10,7 +11,6 @@ IMAGES.pin = "pin.jpg";
 var sheetData;
 // 整形後データ
 var arrayData;
-
 
 // ロード時処理
 window.onload = function () {
@@ -183,12 +183,6 @@ function nullToHyphen(val){
     }
 }
 
-// 積算距離のプラス
-function makeOdo(odo,odoPlus){
-    // Number化した上で合計値を四捨五入して返す
-    return floatFormat(nullToZero(odo)+nullToZero(odoPlus),1);
-}
-
 // Null to Zero
 function nullToZero(val){
     if(!val){return 0;}
@@ -200,4 +194,10 @@ function nullToZero(val){
 function floatFormat( number, n ) {
     var _pow = Math.pow( 10 , n ) ;
     return Math.round( number * _pow ) / _pow ;
+}
+
+// 積算距離のプラス
+function makeOdo(odo,odoPlus){
+    // Number化した上で合計値を四捨五入して返す
+    return floatFormat(nullToZero(odo)+nullToZero(odoPlus),1);
 }

@@ -34,7 +34,7 @@
             </td>
             <td class="<%= header_title %>"><%= title %></td>
         </tr>
-        <tr class="tr_2"><td class="<%= header_next %>">&gt;<span class="bignum"><%= next %></span>km</td><td class="<%= header_street %>"><%= street %></td></tr>
+        <tr class="tr_2"><td class="<%= header_next %>">&gt;<span class="bignum"><%= floatFormat(next,1) %></span>km</td><td class="<%= header_street %>"><%= street %></td></tr>
         <tr class="tr_3"><td colspan="3" class=" <% if(caution=='TRUE'){ %> <%= header_caution %> <% } %> <%= header_memo %>"><%= nullToHyphen(memo) %></td></tr>
         </tbody>
         </table>
