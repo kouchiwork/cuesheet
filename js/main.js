@@ -62,14 +62,13 @@ $(document).on('click', "#loadButton", function () {
             changeData();
             // DOMに展開
             renderForm();
+            // TOPまでスクロール
+            window.scrollTo(0, 0) ;
         },
         error: function () {
             alert('error');
         }
     });
-
-    // TOPまでスクロール
-    window.scrollTo(0, 0) ;
 
 });
 
