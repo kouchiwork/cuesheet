@@ -6,6 +6,10 @@ IMAGES.check = "check.jpg";
 IMAGES.right = "right.jpg";
 IMAGES.left = "left.jpg";
 IMAGES.pin = "pin.jpg";
+IMAGES.t = "t.jpg";
+IMAGES.fork = "fork.png";
+IMAGES.signal = "signal.png";
+IMAGES.x = "x.jpg";
 
 // オリジナルデータ
 var sheetData;
