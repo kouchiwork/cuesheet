@@ -1,10 +1,10 @@
 
 // 画像ファイル定義
 var IMAGES = {};
-IMAGES.checkpoint = "check.jpg";
+IMAGES.check = "check.jpg";
 IMAGES.right = "right.jpg";
 IMAGES.left = "left.jpg";
-IMAGES.hint = "info.jpg";
+IMAGES.pin = "pin.jpg";
 
 // オリジナルデータ
 var sheetData;
@@ -26,10 +26,11 @@ window.onload = function () {
         $("#loadButton").click();
     }
 
-    // KEYが指定されている場合は自動出力
+    // KEYが指定されている場合はURLを生成して自動出力
     if (qs['key']){
         var defUrl = "https://docs.google.com/spreadsheets/d/"+qs['key']+"/edit#gid=0";
         $("#sheetUrl").val(defUrl);
+
         $("#loadButton").click();
     }
 
