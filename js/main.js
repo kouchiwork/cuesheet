@@ -11,26 +11,24 @@ var sheetData;
 // 整形後データ
 var arrayData;
 
-// 指定キー
-var QS;
 
 // ロード時処理
 window.onload = function () {
 
     // GETパラメータ取得
-    QS = GetQueryString();
-    if(!QS){return true;}
+    var qs = GetQueryString();
+    if(!qs){return true;}
 
     // debugだったら自分の情報を自動出力
-    if (QS['debug'] == 1){
+    if (qs['debug'] == 1){
         var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
         $("#sheetUrl").val(defUrl);
         $("#loadButton").click();
     }
 
     // KEYが指定されている場合は自動出力
-    if (QS['key']){
-        var defUrl = "https://docs.google.com/spreadsheets/d/"+QS['key']+"/edit#gid=0";
+    if (qs['key']){
+        var defUrl = "https://docs.google.com/spreadsheets/d/"+qs['key']+"/edit#gid=0";
         $("#sheetUrl").val(defUrl);
         $("#loadButton").click();
     }
