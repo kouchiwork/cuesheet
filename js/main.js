@@ -67,6 +67,10 @@ $(document).on('click', "#loadButton", function () {
             alert('error');
         }
     });
+
+    // TOPまでスクロール
+    window.scrollTo(0, 0) ;
+
 });
 
 // データ整形
