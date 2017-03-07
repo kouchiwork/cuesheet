@@ -4,8 +4,7 @@ var IMAGES = {};
 IMAGES.checkpoint = "check.jpg";
 IMAGES.right = "right.jpg";
 IMAGES.left = "left.jpg";
-IMAGES.hint = "info" +
-    ".jpg";
+IMAGES.hint = "info.jpg";
 
 // オリジナルデータ
 var sheetData;
