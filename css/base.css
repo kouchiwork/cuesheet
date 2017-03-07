@@ -73,7 +73,6 @@ td{
 
 /*左アイコンは右矢印を反転*/
 .left {
-    transform: rotateY(180deg);
     filter: invert(100%);
 }
 .right {
@@ -98,4 +97,5 @@ td{
     #control {
         display:none;
     }
+
 }

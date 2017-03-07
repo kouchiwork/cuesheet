@@ -2,9 +2,10 @@
 // 画像ファイル定義
 var IMAGES = {};
 IMAGES.checkpoint = "check.jpg";
-IMAGES.right = "arrow.jpg";
-IMAGES.left = "arrow.jpg";
-IMAGES.hint = "info.jpg";
+IMAGES.right = "right.jpg";
+IMAGES.left = "left.jpg";
+IMAGES.hint = "info" +
+    ".jpg";
 
 // オリジナルデータ
 var sheetData;
