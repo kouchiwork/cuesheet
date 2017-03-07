@@ -3,20 +3,19 @@ html {
     font-size: 62.5%;
 }
 body{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 4rem;
-}
-
-/*Chrome印刷対応*/
-/*todo BootStrapが干渉してるようなので見直し*/
-@media print {
-  body {
-    -webkit-print-color-adjust: exact;
-  }
 }
 
 table{
     font-size: 4rem;
-    /*width:100%;*/
+    page-break-inside: avoid;
+}
+td{
+    padding: 8px;
+    line-height: 1.5;
+    vertical-align: top;
+    border-top: 3px solid #ddd;
 }
 
 /*入力欄の幅指定*/
@@ -79,4 +78,19 @@ table{
 /*注意フラグ*/
 .caution {
     color: orangered !important;
+}
+
+/*------- 印刷対応 ---------*/
+
+@media print {
+
+    body {
+        -webkit-print-color-adjust: exact;
+        width:297mm !IMPORTANT;
+        height:420mm !IMPORTANT;
+    }
+
+    #control {
+        display:none;
+    }
 }

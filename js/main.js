@@ -1,17 +1,4 @@
 
-// シート列定義
-var COL = {
-    NUM : 0,
-    TITLE : 1,
-    ICON : 2,
-    STREET : 3,
-    NEXT : 4,
-    ODO : 5,
-    SIGNAL : 6,
-    CAUTION : 7,
-    MEMO : 8,
-};
-
 // 画像ファイル定義
 var IMAGES = {};
 IMAGES.checkpoint = "check.jpg";
@@ -90,105 +77,62 @@ function changeData(){
     // 先に最大行数と最大列数から配列の形を決定し、
     // その後セル位置から値を埋め込んでいく (空白セル対応)
 
+    // 最終アイテムのrowを最大行数とする
     var maxRow = sheetData[sheetData.length-1].gs$cell.row;
-    var maxCol = Object.keys(COL).length;
+
+    // ヘッダ行の最大列を列幅とする
+    var maxCol = 0;
+    var headers =[]
+    sheetData.some(function(item){
+        if (item.gs$cell.row == 2){
+            return true;
+        }
+        maxCol = item.gs$cell.col;
+        headers.push(item.gs$cell.$t);
+    })
 
     // 配列初期化
     arrayData = [];
 
-    // SheetDataを配列に展開
-    for(var row = 1; row <= maxRow; row++) {
+    // SheetDataをハッシュに展開
+    for(var row = 2; row <= maxRow; row++) {
         arrayData.push([]);
         for(var col = 1; col <= maxCol; col++) {
             var val = getDataFromSheet(row,col);
-            arrayData[row-1].push(val);
+            arrayData[row-2][headers[col-1]]=val;
         }
     }
 
 }
 
-// 指定したセル位置の値を取得
-function getDataFromSheet(row,col){
-    var val = sheetData.filter(function(item, index){
-        if (item.gs$cell.row == row && item.gs$cell.col == col) return true;
-    });
-    if (val[0]){
-        return val[0].gs$cell.$t;
-    }else{
-        return " "
-    }
-}
-
-// 出力
+// テンプレートに出力
 function renderForm() {
 
     // 表示初期化
     var selector = "#result";
     $(selector).empty();
 
-    for (var row = 0; row < arrayData.length; row++) {
-        // ヘッダ行は表示しない
-        if (row==0){ continue; }
+    // テンプレートを取得
+    var template = _.template($("#data_template").html());
 
-        var rowData = arrayData[row];
-        var addHtml = "";
+    // ハッシュ配列をテンプレートに展開
+    _.each(arrayData,function(elm,i){
 
-        addHtml +="<tbody>";
-        addHtml +="<tr class='tr_0'><td colspan='3'></td></tr>";
-
-        // ------------------------------
-        // 1行目
-        addHtml +="<tr class='tr_1'>";
-
-        //アイコン列
-        addHtml +="<td rowspan='2' class='"+arrayData[0][COL.ICON]+" "+rowData[COL.ICON]+"'>";
-        addHtml +="<img src='img/"+getImageName(rowData[COL.ICON])+"' >";
-        addHtml +="</td>";
-
-        //距離列
-        addHtml +="<td class='"+arrayData[0][COL.ODO]+"'>";
-        addHtml +="<p><span class='bignum'>" + rowData[COL.ODO]+"</span> km</p>";
-        if (rowData[COL.SIGNAL] == "TRUE"){
-          addHtml +="<span class='signal'><img src='img/signal.png' height='10px' /></span>";
-        }
-        addHtml +="</td>"
-        //タイトル
-        addHtml +="<td class='"+arrayData[0][COL.TITLE]+"'>";
-        addHtml += rowData[COL.TITLE];
-        addHtml +="</td>";
-
-        addHtml +="</tr>";
-
-        // ------------------------------
-        // 2行目
-        addHtml +="<tr class='tr_2'>";
-
-        //次のポイントまでの距離
-        addHtml +="<td class='"+arrayData[0][COL.NEXT]+"'>><span class='bignum'>" + rowData[COL.NEXT]+"</span>km</td>"
-        //道路名
-        addHtml +="<td class='"+arrayData[0][COL.STREET]+"'>" + rowData[COL.STREET]+"</td>"
-
-        addHtml +="</tr>";
-
-        // ------------------------------
-        // 3行目
-        addHtml +="<tr class='tr_3'>";
-
-        var caution="";
-        if (rowData[COL.CAUTION]=="TRUE"){
-          caution=" caution ";
-        }
-
-        // メモ
-        addHtml +="<td colspan='3' class='" + caution +arrayData[0][COL.MEMO]+"'>" + rowData[COL.MEMO].replace(/\r?\n/g, '<br>')+"</td>"
-        addHtml +="</tr>";
-
-        addHtml +="</tbody>";
+        // ヘッダ名と値を分けてハッシュに格納
+        var template_values = {};
+        Object.keys(elm).forEach(function(key) {
+            template_values["header_" + key] = key;
+            template_values[key] = this[key];
+        }, elm);
 
         // 出力
-        $(selector).append(addHtml);
-    }
+        $("#result").append(template(template_values));
+
+    });
+
 }
+
+// ------ private functions ----------------------------------------
 
 //クエリストリング取得
 function GetQueryString() {
@@ -216,6 +160,17 @@ function GetQueryString() {
     return null;
 }
 
+// 指定したセル位置の値を取得
+function getDataFromSheet(row,col){
+    var val = sheetData.filter(function(item, index){
+        if (item.gs$cell.row == row && item.gs$cell.col == col) return true;
+    });
+    if (val[0]){
+        return val[0].gs$cell.$t;
+    }else{
+        return " "
+    }
+}
 
 // 画像ファイル指定 (指定なし対応でデフォルト値をhintに)
 function getImageName(val){
