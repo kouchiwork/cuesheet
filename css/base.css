@@ -71,7 +71,6 @@ td{
     height: 50px;
 }
 
-/*左アイコンは右矢印を反転*/
 .left {
     filter: invert(100%);
 }
