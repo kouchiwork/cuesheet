@@ -7,7 +7,7 @@ IMAGES.right = "right.jpg";
 IMAGES.left = "left.jpg";
 IMAGES.pin = "pin.jpg";
 IMAGES.t = "t.jpg";
-IMAGES.fork = "fork.png";
+IMAGES.y = "fork.png";
 IMAGES.signal = "signal.png";
 IMAGES.x = "x.jpg";
 
