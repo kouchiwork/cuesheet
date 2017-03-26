@@ -98,7 +98,7 @@ td{
         -webkit-print-color-adjust: exact;
         width:297mm !important;
         height:420mm !important;
-        margin: 0mm 10mm !important;
+        margin: 0mm 0mm !important;
     }
 
     #control {
