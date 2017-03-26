@@ -83,6 +83,10 @@ td{
     color: orangered !important;
 }
 
+.time_memo {
+    width: 430px;
+    margin-left: auto;
+}
 /*------- 印刷対応 ---------*/
 
 @media print {

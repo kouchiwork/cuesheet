@@ -28,7 +28,7 @@
             </td>
             <td class="<%= header_odo %>">
                 <p><span class="bignum"><%= makeOdo(odo,$("#odoplus").val()) %></span> km</p>
-                <% if(signal=='TRUE'){ %>
+                <% if(signal){ %>
                 <span class='small_icon'><img src='img/<%= IMAGES["signal"] %>' /></span>
                 <% } %>
                 <% if(cross_type){ %>
@@ -38,7 +38,14 @@
             <td class="<%= header_title %>"><%= title %></td>
         </tr>
         <tr class="tr_2"><td class="<%= header_next %>">&gt;<span class="bignum"><%= floatFormat(next,1) %></span>km</td><td class="<%= header_street %>"><%= street %></td></tr>
-        <tr class="tr_3"><td colspan="3" class=" <% if(caution=='TRUE'){ %> <%= header_caution %> <% } %> <%= header_memo %>"><%= nullToHyphen(memo) %></td></tr>
+        <tr class="tr_3">
+          <td colspan="3" class="  <%= header_memo %>">
+            <p class = "<% if(caution){ %> <%= header_caution %> <% } %>"><%= nullToHyphen(memo) %></p>
+            <% if(header_time_plan){%>
+              <p class="time_memo">(plan:<%= time_plan %> / limit:<%= time_limit %>)</p>
+            <% } %>
+         </td>
+       </tr>
         </tbody>
         </table>
 
