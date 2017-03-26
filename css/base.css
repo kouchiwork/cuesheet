@@ -5,6 +5,7 @@ html {
 body{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 4rem;
+    margin: 0mm 5mm !IMPORTANT;
 }
 
 table{
@@ -97,7 +98,7 @@ td{
         -webkit-print-color-adjust: exact;
         width:297mm !IMPORTANT;
         height:420mm !IMPORTANT;
-        margin: 0mm 0mm !IMPORTANT;
+        margin: 0mm 5mm !IMPORTANT;
     }
 
     #control {
