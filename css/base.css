@@ -93,15 +93,14 @@ td{
 /*------- 印刷対応 ---------*/
 
 @media print {
-
     body {
         -webkit-print-color-adjust: exact;
         width:297mm !IMPORTANT;
         height:420mm !IMPORTANT;
+        margin: 0mm 0mm !IMPORTANT;
     }
 
     #control {
         display:none;
     }
-
 }
