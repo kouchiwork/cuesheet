@@ -11,32 +11,51 @@ IMAGES.y = "y.png";
 IMAGES.signal = "signal.png";
 IMAGES.x = "x.jpg";
 
+// queryString
+var qs;
 // オリジナルデータ
 var sheetData;
 // 整形後データ
 var arrayData;
+// 時刻(計算するしないのフラグ)
+var startTime;
 
 // ロード時処理
 window.onload = function () {
 
     // GETパラメータ取得
-    var qs = GetQueryString();
+    qs = GetQueryString();
     if(!qs){return true;}
 
     // debugだったら自分の情報を自動出力
-    if (qs['debug'] == 1){
+    if (qs.debug == 1){
         var defUrl = "https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0";
         $("#sheetUrl").val(defUrl);
         $("#loadButton").click();
     }
 
     // KEYが指定されている場合はURLを生成して自動出力
-    if (qs['key']){
-        var defUrl = "https://docs.google.com/spreadsheets/d/"+qs['key']+"/edit#gid=0";
+    if (qs.key){
+        var defUrl = "https://docs.google.com/spreadsheets/d/"+qs.key+"/edit#gid=0";
         $("#sheetUrl").val(defUrl);
-
         $("#loadButton").click();
     }
+
+    // start_hourが指定されている場合は時刻の設定
+
+    // start_hour
+    // start_minute
+    if (qs.start_hour){
+      startTime = new Date();
+      startTime.setHours(qs.start_hour);
+      startTime.setMinutes(0);
+      startTime.setSeconds(0);
+      if (qs.start_minute){
+        startTime.setMinutes(qs.start_minute);
+      }
+    }
+
+
 
 };
 
@@ -200,8 +219,29 @@ function floatFormat( number, n ) {
     return Math.round( number * _pow ) / _pow ;
 }
 
-// 積算距離のプラス
+// 積算距離の補正
 function makeOdo(odo,odoPlus){
     // Number化した上で合計値を四捨五入して返す
     return floatFormat(nullToZero(odo)+nullToZero(odoPlus),1);
+}
+
+// 時刻計算
+function calculateTime(time,odo,speed){
+
+  // Start時間、積算距離、予定速度が無い場合は計算しない
+  if (!time){return false;}
+  if (!odo){return false;}
+  if (!speed){return false;}
+
+  // 距離補正
+  odo = makeOdo(odo,$("#odoplus").val())
+
+  // 経過分を計算
+  var elaplsedMinute = odo / speed * 60;
+  var calcTime = new Date();
+  calcTime.setHours(time.getHours());
+  calcTime.setMinutes(time.getMinutes() + elaplsedMinute);
+
+  // hh:mm 形式で変換
+  return calcTime.getHours() + ":" + ("0"+calcTime.getMinutes()).slice(-2);
 }

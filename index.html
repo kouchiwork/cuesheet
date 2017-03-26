@@ -37,13 +37,21 @@
             </td>
             <td class="<%= header_title %>"><%= title %></td>
         </tr>
-        <tr class="tr_2"><td class="<%= header_next %>">&gt;<span class="bignum"><%= floatFormat(next,1) %></span>km</td><td class="<%= header_street %>"><%= street %></td></tr>
+        <tr class="tr_2"><td class="<%= header_next %>">&gt;&nbsp;<span class=""><%= floatFormat(next,1) %></span>km</td><td class="<%= header_street %>"><%= street %></td></tr>
         <tr class="tr_3">
           <td colspan="3" class="  <%= header_memo %>">
             <p class = "<% if(caution){ %> <%= header_caution %> <% } %>"><%= nullToHyphen(memo) %></p>
-            <% if(header_time_plan){%>
-              <p class="time_memo">(plan:<%= time_plan %> / limit:<%= time_limit %>)</p>
+            <p class="time">
+            <% var planTime = calculateTime(startTime,odo,qs.plan_speed); %>
+            <% var limitTime = calculateTime(startTime,odo,qs.limit_speed); %>
+            <% if(planTime && limitTime){%>
+              <%= planTime %> / <%= limitTime %>
+            <% } else if (planTime){ %>
+              <%= planTime %>
+            <% } else if (limitTime){ %>
+              <%= limitTime %>
             <% } %>
+          </p>
          </td>
        </tr>
         </tbody>

@@ -5,23 +5,23 @@ CueSheetBuilder Ver 1.0
 --------------------------
 outline
 --------------------------
+GoogleSpreadSheetに入力したデータをもとにキューシートを自動で表示します。
+自動表示、距離の補正機能、時刻の自動計算機能の機能があります。
+
 # URL
 https://reels78.github.io/cuesheet/
 
 --------------------------
 how to make
 --------------------------
-1. PCを用意
+1. Googleアカウント、PCを用意
 Mobileでもできるけど入力が大変。
 
 2. Googleスプレッドシートを作る
-こーちのシートを開けて１行目を全部コピーして貼り付ける
-URL :
-https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
+GoogleDriveからGoogleSpreadSheetを作る
 
 3. データを入力していく
-各ヘッダの意味は下の「Headers」の項を参照
-注意:ヘッダ(１行目)の名前は変更しないこと。順番は自由に変えてOK。
+入力規則は下の「Headers」を参照
 
 4. ウェブ上で公開する
 Googleスプレッドシートの
@@ -29,29 +29,19 @@ Googleスプレッドシートの
 
 5. CueSheet Builderの入力欄に作成したシートのURLを入力して「load」をクリックで表示されます。
 
-6. 自動表示の設定
-
-URLにGoogleスプレッドシートのkeyを埋め込むことで自動表示できます。
-ex) https://reels78.github.io/cuesheet/?key=XXXXXX
-
-keyはGoogleスプレッドシートのURLの以下の部分
-https://docs.google.com/spreadsheets/d/【この部分】/edit#gid=0
-
-ex)
-シートのURL
-https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
-↓
-key
-1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
-↓
-埋め込んだURL
-https://reels78.github.io/cuesheet/?key=1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
-
-このようにkeyを埋め込むとシートのURLを入力しなくても自動で表示されるようになる。
-
 --------------------------
 Headers
 --------------------------
+シートの１行目に以下の名称のヘッダが必要です。
+ヘッダの順番は自由です。
+２行目以降に実際のデータを入力します。
+入力例)
+https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
+
+【必須入力】
+
+# odo
+積算距離。ルートラボなどで距離を調べて入力する。
 
 # title
 ポイントのタイトル。
@@ -65,21 +55,21 @@ ex) 「山中湖」「第二チェックポイント」など
 - pin : ピンアイコン
 何も入力しないとピンアイコンになります。
 
+# next
+次のポイントまでの距離。
+シート上で次の行の積算距離から引くような計算式を入れてしまえば簡単です。
+
 # street
 道路名。自由入力。
 ex) 「県道３号線」など
 
-# next
-次のポイントまでの距離。
-シート上で積算距離から引くような計算式を入れてしまえば簡単。
-ex) E3に入力の場合:「=F4-F3」
+# memo
+メモ欄。自由入力。
 
-# odo
-積算距離。ルートラボなどで距離を調べて入力する。
+【任意入力】
 
 # signal
 信号があるかどうか。何か入力すると信号マークが表示される。
-右折、左折ポイントなどで入力する。
 
 #cross_type
 交差点の種類。以下の入力でそれぞれ対応するアイコンが表示される。
@@ -90,15 +80,59 @@ x: 十字路
 # caution
 注意したいポイントで何か入力すると、メモ欄が赤く表示される。
 
-# memo
-メモ欄。自由入力。
+--------------------------
+自動表示機能
+--------------------------
+URLにGoogleスプレッドシートのkeyを埋め込むことで表示ボタンを押さなくても自動表示できます。
+ex) https://reels78.github.io/cuesheet/?key=XXXXXX
 
-# time_plan
-# time_limit
-予定到着時間とリミット時間。
-入力するとメモ欄に表示されます。
-プログラム側では表示するだけで計算してないんで、
-SpreadSheet側で好きな時速で計算させると良いです。
+keyはGoogleスプレッドシートのURLの以下の部分
+https://docs.google.com/spreadsheets/d/【この部分】/edit#gid=0
+
+ex)
+シートのURL
+https://docs.google.com/spreadsheets/d/1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU/edit#gid=0
+↓
+key
+1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
+↓
+埋め込んだ状態のURL
+https://reels78.github.io/cuesheet/?key=1Eavr0q9ijsz0ZIsI9HoK0L_6Dl5w38-W0oyiEDe00wU
+
+このようにkeyを埋め込むとシートのURLを入力しなくても自動で表示されるようになります。
+
+--------------------------
+到着時刻の表示機能
+--------------------------
+スタート時刻と速度(km/h)をURLに入れることで、
+それぞれのポイントの到着予定時刻が出ます。
+パラメータは以下。
+
+# start_hour
+必須。出発時刻(時間)です。14時なら14。
+
+# start_minute
+出発時刻(分)。任意入力。入力しなければ０分になります。
+
+# plan_speed
+予定している速度(km/h)です。16km/hなら16
+
+# limit_speed
+制限時間内に間に合う限界の速度(km/h)です。13.7km/hなら13.7
+
+ex)
+14時出発、15km平均予定の場合
+[URL]?start_hour=14&plan_speed=15
+
+13時30分出発、15km平均予定、最低13.7km平均の場合
+[URL]?start_hour=13&start_minute=30&plan_speed=15&limit_speed=13.7
+
+--------------------------
+距離の補正機能
+--------------------------
+実際の走行での距離のズレを後から補正できます。
+ページ最下部の「odo+」の欄に数値を入力してLoadボタンを押すと、
+全データの積算距離が補正されて再表示されます。
 
 --------------------------
 PDF変換、転送

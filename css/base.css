@@ -36,6 +36,9 @@ td{
 .bignum {
     font-size: 1.7em;
 }
+.midnum {
+    font-size: 1.2em;
+}
 .small_text{
     font-size: 0.5em;
 }
@@ -83,10 +86,10 @@ td{
     color: orangered !important;
 }
 
-.time_memo {
-    width: 430px;
-    margin-left: auto;
+.time{
+  text-align: right
 }
+
 /*------- 印刷対応 ---------*/
 
 @media print {
