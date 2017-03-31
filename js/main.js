@@ -6,10 +6,10 @@ IMAGES.check = "check.jpg";
 IMAGES.right = "right.jpg";
 IMAGES.left = "left.jpg";
 IMAGES.pin = "pin.jpg";
-IMAGES.t = "t.jpg";
-IMAGES.y = "y.png";
 IMAGES.signal = "signal.png";
-IMAGES.x = "x.jpg";
+IMAGES.t = "t.png";
+IMAGES.x = "x.png";
+IMAGES.y = "y.png";
 
 // queryString
 var qs;
