@@ -5,13 +5,16 @@ var IMAGES = {};
 IMAGES.check = "check.jpg";
 IMAGES.right = "right.jpg";
 IMAGES.left = "left.jpg";
-IMAGES.r = "right.jpg";
-IMAGES.l = "left.jpg";
 IMAGES.pin = "pin.jpg";
 IMAGES.signal = "signal.png";
 IMAGES.t = "t.png";
 IMAGES.x = "x.png";
 IMAGES.y = "y.png";
+IMAGES.r = "right.jpg";
+IMAGES.l = "left.jpg";
+IMAGES.c = "check.jpg";
+IMAGES.p = "pin.jpg";
+
 
 // queryString
 var qs;
