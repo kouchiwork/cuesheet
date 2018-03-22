@@ -75,16 +75,7 @@ td{
     height: 50px;
 }
 
-.left {
-    filter: invert(100%);
-}
-.l {
-    filter: invert(100%);
-}
-.right {
-    filter: invert(100%);
-}
-.r {
+.left, .l, .right, .r {
     filter: invert(100%);
 }
 
