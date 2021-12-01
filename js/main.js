@@ -41,8 +41,7 @@ window.onload = function () {
 
     // KEYが指定されている場合はURLを生成して自動出力
     if (qs.key){
-        //var defUrl = "https://docs.google.com/spreadsheets/d/"+qs.key+"/edit#gid=0";
-        var defUrl = "https://sheets.googleapis.com/v4/spreadsheets/" + qs.key + "?includeGridData=true";
+        var defUrl = "https://docs.google.com/spreadsheets/d/"+qs.key+"/edit#gid=0";
         $("#sheetUrl").val(defUrl);
         $("#loadButton").click();
     }
@@ -77,8 +76,9 @@ $(document).on('click', "#loadButton", function () {
     var sheetKey = split[5];
 
     // APIのURLを生成
-    //var requestUrl = "https://spreadsheets.google.com/feeds/cells/" + sheetKey + "/od6/public/values?alt=json";
-    var requestUrl = "https://sheets.googleapis.com/v4/spreadsheets/" + sheetKey + "?includeGridData=true";
+    var apiKey = 'AIzaSyBbRO3lYbbpvZTmwpbl9jI8yKv89qUgqt8';
+    var sheetName = 'シート1';
+    var requestUrl = "https://sheets.googleapis.com/v4/spreadsheets/" + sheetKey + "/values/" + sheetName + "?key=" + apiKey;
 
     // SpreadSheetからシート情報を取得して格納
     $.ajax({
@@ -88,7 +88,7 @@ $(document).on('click', "#loadButton", function () {
         cache: false,
         success: function (data) {
             // 実データ部分を取得
-            sheetData = data.feed.entry;
+            sheetData = data.values;
             // データ整形
             changeData();
             // DOMに展開
@@ -106,35 +106,25 @@ $(document).on('click', "#loadButton", function () {
 // データ整形
 function changeData(){
 
-    // 先に最大行数と最大列数から配列の形を決定し、
-    // その後セル位置から値を埋め込んでいく (空白セル対応)
+    // define max row and max col
+    var maxRow = sheetData.length-1;
+    var maxCol = sheetData[0].length-1;
+    var headers =sheetData[0]
 
-    // 最終アイテムのrowを最大行数とする
-    var maxRow = sheetData[sheetData.length-1].gs$cell.row;
-
-    // ヘッダ行の最大列を列幅とする
-    var maxCol = 0;
-    var headers =[]
-    sheetData.some(function(item){
-        if (item.gs$cell.row == 2){
-            return true;
-        }
-        maxCol = item.gs$cell.col;
-        headers.push(item.gs$cell.$t);
-    })
-
-    // 配列初期化
+    // then fill values by position of cells
     arrayData = [];
 
-    // SheetDataをハッシュに展開
-    for(var row = 2; row <= maxRow; row++) {
+    // change data to hash
+    for(var row = 1; row <= maxRow; row++) {
         arrayData.push([]);
-        for(var col = 1; col <= maxCol; col++) {
-            var val = getDataFromSheet(row,col);
-            arrayData[row-2][headers[col-1]]=val;
+        for(var col = 0; col <= maxCol; col++) {
+            var val = sheetData[row][col];
+            if (typeof val === "undefined") {
+              val = "";
+            }
+            arrayData[row-1][headers[col]]=val.trim();
         }
     }
-
 }
 
 // テンプレートに出力
