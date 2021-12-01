@@ -183,16 +183,16 @@ function GetQueryString() {
 }
 
 // 指定したセル位置の値を取得
-function getDataFromSheet(row,col){
-    var val = sheetData.filter(function(item, index){
-        if (item.gs$cell.row == row && item.gs$cell.col == col) return true;
-    });
-    if (val[0]){
-        return val[0].gs$cell.$t.trim();
-    }else{
-        return ""
-    }
-}
+// function getDataFromSheet(row,col){
+//     var val = sheetData.filter(function(item, index){
+//         if (item.gs$cell.row == row && item.gs$cell.col == col) return true;
+//     });
+//     if (val[0]){
+//         return val[0].gs$cell.$t.trim();
+//     }else{
+//         return ""
+//     }
+// }
 
 // Null to hyphen
 function nullToHyphen(val){
