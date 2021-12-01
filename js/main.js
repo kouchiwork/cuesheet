@@ -41,7 +41,8 @@ window.onload = function () {
 
     // KEYが指定されている場合はURLを生成して自動出力
     if (qs.key){
-        var defUrl = "https://docs.google.com/spreadsheets/d/"+qs.key+"/edit#gid=0";
+        //var defUrl = "https://docs.google.com/spreadsheets/d/"+qs.key+"/edit#gid=0";
+        var defUrl = "https://sheets.googleapis.com/v4/spreadsheets/" + qs.key + "?includeGridData=true";
         $("#sheetUrl").val(defUrl);
         $("#loadButton").click();
     }
