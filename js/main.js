@@ -77,7 +77,8 @@ $(document).on('click', "#loadButton", function () {
     var sheetKey = split[5];
 
     // APIのURLを生成
-    var requestUrl = "https://spreadsheets.google.com/feeds/cells/" + sheetKey + "/od6/public/values?alt=json";
+    //var requestUrl = "https://spreadsheets.google.com/feeds/cells/" + sheetKey + "/od6/public/values?alt=json";
+    var requestUrl = "https://sheets.googleapis.com/v4/spreadsheets/" + sheetKey + "?includeGridData=true";
 
     // SpreadSheetからシート情報を取得して格納
     $.ajax({
