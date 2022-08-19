@@ -38,7 +38,7 @@
             </td>
             <td class="<%= header_title %>"><%= title %></td>
         </tr>
-        <tr class="tr_2"><td class="<%= header_next %>">&gt;&nbsp;<span class=""><%= floatFormat(next,1) %></span>km (<%= plan_speed %>)</td><td class="<%= header_street %>"><%= street %></td></tr>
+        <tr class="tr_2"><td class="<%= header_next %>">&gt;&nbsp;<span class=""><%= floatFormat(next,1) %></span>km <% if(plan_speed){ %>(<%= plan_speed %>km/h)<% } %></td><td class="<%= header_street %>"><%= street %></td></tr>
         <tr class="tr_3">
           <td colspan="3" class="  <%= header_memo %>">
             <p class = "<% if(caution){ %> <%= header_caution %> <% } %>"><%= nullToHyphen(memo) %></p>
